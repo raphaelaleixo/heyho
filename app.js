@@ -22,14 +22,17 @@ form?.addEventListener('submit', async (event) => {
     if (response.ok && result.ok) {
       form.querySelectorAll('.field, .button--send').forEach((el) => el.remove());
       status.textContent = 'Thank you — that landed in my inbox. Have a great festival!';
+      status.focus();
       return;
     }
 
     status.textContent = result.error ?? "That didn't send — please try again in a moment.";
     status.classList.add('reply__status--error');
+    status.focus();
   } catch {
     status.textContent = "That didn't send — check your connection and try again.";
     status.classList.add('reply__status--error');
+    status.focus();
   } finally {
     button.disabled = false;
   }
