@@ -53,4 +53,22 @@ describe('buildFeedbackEmail', () => {
     expect(mail.text).toContain('Age: (not given)');
     expect(mail.text).toContain('Email: (not given)');
   });
+
+  it('does not add ellipsis for a message at the excerpt limit', () => {
+    const mail = buildFeedbackEmail(
+      { message: 'Exactly twenty nine chars now' },
+      options,
+    );
+    expect(mail.subject).toBe('Hey Ho feedback — Exactly twenty nine chars now');
+    expect(mail.subject).not.toContain('…');
+  });
+
+  it('adds ellipsis for a message beyond the excerpt limit', () => {
+    const mail = buildFeedbackEmail(
+      { message: 'Exactly twenty nine chars now!' },
+      options,
+    );
+    expect(mail.subject).toBe('Hey Ho feedback — Exactly twenty nine chars now…');
+    expect(mail.subject).toContain('…');
+  });
 });
