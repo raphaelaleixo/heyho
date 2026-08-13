@@ -1,0 +1,145 @@
+/* Hey Ho, Let's Find! — hand-written, no build step, no framework.
+   Sour Gummy (900) shouts, Jua talks. */
+
+:root {
+  --ink: #141414;
+  --paper: #f7f4e9;
+  --pink: #ff2d6f;
+  --yellow: #ffd93d;
+  --green: #39e08a;
+  --cyan: #4dd0f7;
+  --stroke: 3px;
+  --wrap: 34rem;
+
+  --font-display: 'Sour Gummy', 'Trebuchet MS', system-ui, sans-serif;
+  --font-body: 'Jua', 'Trebuchet MS', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* Reusable sticker block: thick outline, hard offset shadow. */
+.sticker {
+  border: var(--stroke) solid var(--ink);
+  border-radius: 14px;
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+/* ---------- The stage (hero) ---------- */
+
+.stage {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+  padding-block: 3rem 2.5rem;
+}
+
+.stage__checker {
+  position: absolute;
+  top: -3rem;
+  right: -3rem;
+  width: 14rem;
+  height: 14rem;
+  background: repeating-conic-gradient(var(--pink) 0 25%, var(--ink) 0 50%) 0 0 / 2rem 2rem;
+  transform: rotate(12deg);
+}
+
+.stage > .wrap { position: relative; }
+
+.stage__title {
+  margin: 0;
+  font-size: clamp(2.75rem, 13vw, 4rem);
+  color: var(--yellow);
+  -webkit-text-stroke: 4px var(--ink);
+  paint-order: stroke fill;
+  text-shadow: 6px 6px 0 var(--pink);
+}
+
+.stage__lede {
+  margin: 1.25rem 0 0;
+  max-width: 26rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 1rem;
+  box-shadow: 5px 5px 0 rgb(0 0 0 / 0.55);
+  transform: rotate(-0.8deg);
+}
+
+.downloads { list-style: none; margin: 1.75rem 0 0; padding: 0; }
+.downloads li + li { margin-top: 1rem; }
+
+.button {
+  display: inline-block;
+  padding: 0.85rem 1.4rem;
+  border: var(--stroke) solid var(--ink);
+  border-radius: 999px;
+  background: var(--green);
+  color: var(--ink);
+  font-size: 1.125rem;
+  text-decoration: none;
+  box-shadow: 5px 5px 0 var(--yellow);
+  transform: rotate(-1.5deg);
+}
+
+.button:hover { transform: rotate(-1.5deg) translate(-1px, -1px); box-shadow: 6px 6px 0 var(--yellow); }
+.button:active { transform: rotate(-1.5deg) translate(2px, 2px); box-shadow: 2px 2px 0 var(--yellow); }
+
+.downloads__meta {
+  display: block;
+  margin-top: 0.6rem;
+  color: #a9a49a;
+  font-size: 0.85rem;
+}
+
+/* ---------- Torn edge between stage and paper ---------- */
+
+.tear {
+  height: 1rem;
+  background: var(--paper);
+  clip-path: polygon(
+    0 55%, 4% 15%, 9% 62%, 14% 22%, 20% 68%, 26% 18%, 32% 60%, 38% 25%,
+    44% 70%, 50% 20%, 56% 64%, 62% 22%, 68% 66%, 74% 18%, 80% 60%,
+    86% 26%, 92% 64%, 97% 20%, 100% 58%, 100% 100%, 0 100%
+  );
+}
+
+.paper { padding-block: 0.5rem 3rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .button, .button:hover, .button:active { transition: none; }
+}
