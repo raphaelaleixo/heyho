@@ -165,8 +165,10 @@ and no third-party call on a page aimed at parents.
 **PDF and previews.** The author supplies the final PDF at `assets/heyho-en.pdf`;
 `scripts/render-previews.sh` renders `page-1.png` and `page-2.png` from whatever PDF is present, so
 the preview can never drift from the actual file. During the build the current placeholder PDF is
-used, and the script is re-run when the final file lands. The script tries the PDF rasterisers
-available on macOS in order (`pdftoppm`, `sips`, `qlmanage`) and fails loudly if none work.
+used, and the script is re-run when the final file lands. It uses `pdftoppm` (already installed via
+Homebrew on this machine), which is the only rasteriser available here that renders *both* pages —
+`sips` and `qlmanage` only ever produce page one. The script fails loudly with an install hint if
+`pdftoppm` is missing.
 
 **Social card.** `assets/og.png` at 1200×630, composed from the hero, referenced by `og:image` and
 `twitter:image`, alongside title, description, and canonical URL — links pasted into WhatsApp or a
