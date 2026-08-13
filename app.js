@@ -37,3 +37,11 @@ form?.addEventListener('submit', async (event) => {
     button.disabled = false;
   }
 });
+
+// Count downloads. Page views come along with the analytics script and are
+// simply ignored — there is no download-only mode.
+document.querySelectorAll('[data-sheet]').forEach((link) => {
+  link.addEventListener('click', () => {
+    window.va?.('event', { name: 'download', data: { sheet: link.dataset.sheet } });
+  });
+});
