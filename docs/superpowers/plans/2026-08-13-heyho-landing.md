@@ -1800,7 +1800,7 @@ git push
 
 ## Notes for whoever executes this
 
-**The PDF is a placeholder.** `assets/heyho-en.pdf` is the author's draft, and its spot-it labels all read "Colored hair". Ship the site with it anyway — the layout, previews and download all work — and when the finished sheet arrives, replace the file, run `npm run previews` and `npm run og`, and commit. The copy in Task 6's "Spot it" card describes the sheet's *sections*, not the individual items, so it survives the swap.
+**The PDF is essentially finished, not a placeholder.** An early misreading of the file (a template text layer showed "Colored hair" sixteen times) suggested otherwise; the rendered previews show illustrated boxes with real labels — Sunglasses, Skull t-shirt, Mohawk hairstyle, Crowdsurfing, Circle pit, Stage pictures, and so on. Treat `assets/heyho-en.pdf` as the real sheet. If the author does supply a revised file (there is a known typo, "Spiked braclelet"), replace it, re-run `npm run previews` and `npm run og`, and commit. The copy in Task 6's "Spot it" card describes the sheet's *sections* rather than individual items, so it survives any such swap.
 
 **A French sheet is expected later.** It is one more `<li>` in `.downloads` with `data-sheet="fr"`, one more PDF, and one more preview render. The page copy stays English. Do not add i18n.
 
