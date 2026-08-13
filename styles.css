@@ -140,10 +140,6 @@ a { color: inherit; }
 
 .paper { padding-block: 0.5rem 3rem; }
 
-@media (prefers-reduced-motion: reduce) {
-  .button, .button:hover, .button:active { transition: none; }
-}
-
 /* ---------- Paper sections ---------- */
 
 .section { margin-top: 2.5rem; }
@@ -153,8 +149,8 @@ a { color: inherit; }
   font-size: 1.4rem;
 }
 
-.section p { margin: 0 0 0.75rem; }
-.section p:last-child { margin-bottom: 0; }
+.section > p { margin: 0 0 0.75rem; }
+.section > p:last-child { margin-bottom: 0; }
 
 .cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
 
@@ -176,13 +172,13 @@ a { color: inherit; }
   display: block;
   border: 2px solid var(--ink);
   background: #fff;
-  box-shadow: 4px 4px 0 rgb(20 20 20 / 0.14);
+  box-shadow: 4px 4px 0 color-mix(in srgb, var(--ink) 14%, transparent);
 }
 
 .preview:nth-child(1) { transform: rotate(-2deg); }
 .preview:nth-child(2) { transform: rotate(1.6deg); }
 
-.previews__meta {
+.section > p.previews__meta {
   margin: 1.1rem 0 0;
   text-align: center;
   font-size: 0.85rem;
