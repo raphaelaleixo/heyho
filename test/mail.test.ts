@@ -40,17 +40,17 @@ describe('buildFeedbackEmail', () => {
 
   it('puts the message, age and email in the body', () => {
     const mail = buildFeedbackEmail(
-      { message: 'Kids loved it', age: '6', email: 'parent@example.com' },
+      { message: 'Kids loved it', name: 'Raphael', email: 'parent@example.com' },
       options,
     );
     expect(mail.text).toContain('Kids loved it');
-    expect(mail.text).toContain('6');
+    expect(mail.text).toContain('Raphael');
     expect(mail.text).toContain('parent@example.com');
   });
 
   it('says so plainly when age and email are missing', () => {
     const mail = buildFeedbackEmail({ message: 'Kids loved it' }, options);
-    expect(mail.text).toContain('Age: (not given)');
+    expect(mail.text).toContain('Name: (not given)');
     expect(mail.text).toContain('Email: (not given)');
   });
 

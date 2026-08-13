@@ -82,7 +82,7 @@ describe('POST /api/feedback', () => {
 
   it('rejects an invalid submission without sending anything', async () => {
     const res = mockRes();
-    await call(mockReq({ message: '   ' }), res);
+    await call(mockReq({ messname: '   ' }), res);
 
     expect(send).not.toHaveBeenCalled();
     expect(res.statusCode).toBe(400);

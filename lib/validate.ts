@@ -1,12 +1,12 @@
 export const LIMITS = {
   message: 2000,
-  age: 40,
+  name: 80,
   email: 200,
 } as const;
 
 export interface Feedback {
   message: string;
-  age?: string;
+  name?: string;
   email?: string;
 }
 
@@ -35,8 +35,8 @@ export function validateFeedback(input: unknown): ValidationResult {
     return { status: 'error', error: 'That message is a bit too long — could you trim it?' };
   }
 
-  const age = str(body.age);
-  if (age.length > LIMITS.age) return { status: 'error', error: 'That age is too long.' };
+  const name = str(body.name);
+  if (name.length > LIMITS.name) return { status: 'error', error: 'That name is too long.' };
 
   const email = str(body.email);
   if (email.length > LIMITS.email) return { status: 'error', error: 'That email is too long.' };
@@ -46,6 +46,6 @@ export function validateFeedback(input: unknown): ValidationResult {
 
   return {
     status: 'ok',
-    value: { message, ...(age !== '' && { age }), ...(email !== '' && { email }) },
+    value: { message, ...(name !== '' && { name }), ...(email !== '' && { email }) },
   };
 }

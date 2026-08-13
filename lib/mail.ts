@@ -29,7 +29,7 @@ export function buildFeedbackEmail(feedback: Feedback, options: MailOptions): Em
     feedback.message,
     '',
     '—',
-    `Age: ${feedback.age ?? '(not given)'}`,
+    `Name: ${feedback.name ?? '(not given)'}`,
     `Email: ${feedback.email ?? '(not given)'}`,
     '',
     'Sent from the reply card on heyho.ludoratory.com',

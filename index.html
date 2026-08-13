@@ -87,6 +87,11 @@
       <h2 class="display section__title" id="how-to">How to use it</h2>
       <p>Print it, hand it over with a pencil, and that's the whole setup.</p>
       <p>No app to install, no account, nothing to charge, and it keeps working when the signal doesn't — which, at a festival, is most of the day.</p>
+      <p>There's a card at the top for a name, the festival and the date. Fill it in and the sheet stops being a printout and starts being something worth keeping.</p>
+      <div class="sticker card card--gray protip">
+        <h3 class="display card__title">Pro tip</h3>
+        <p class="card__text">Laminate it, or slide it into a plastic wallet. It survives a spilled drink, it's a firm surface to write on in a field, and a whiteboard marker wipes straight off — so one sheet lasts the whole season.</p>
+      </div>
     </section>
 
     <section class="section" aria-labelledby="why">
@@ -98,7 +103,7 @@
     <section class="section" aria-labelledby="tell-me">
       <form class="sticker reply" id="reply" action="/api/feedback" method="post">
         <h2 class="display section__title" id="tell-me">Tell me how it went</h2>
-        <p class="reply__note">This goes straight to my inbox. Nothing is published, and I'll only ever write back to a grown-up.</p>
+        <p class="reply__note">This goes straight to my inbox. Nothing is published.</p>
 
         <div class="field">
           <label class="display field__label" for="message">How did it go?</label>
@@ -107,8 +112,8 @@
 
         <div class="field-row">
           <div class="field">
-            <label class="display field__label" for="age">Kids' ages (optional)</label>
-            <input class="field__input" id="age" name="age" type="text" maxlength="40" autocomplete="off" placeholder="optional">
+            <label class="display field__label" for="name">Your name (optional)</label>
+            <input class="field__input" id="name" name="name" type="text" maxlength="80" autocomplete="name" placeholder="optional">
           </div>
           <div class="field">
             <label class="display field__label" for="email">Your email (optional)</label>

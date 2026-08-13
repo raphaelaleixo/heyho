@@ -12,15 +12,15 @@ describe('validateFeedback', () => {
     expect(result).toEqual({ status: 'ok', value: { message: 'spaced out' } });
   });
 
-  it('keeps the optional age and email when given', () => {
+  it('keeps the optional name and email when given', () => {
     const result = validateFeedback({
       message: 'Great',
-      age: '4 and 7',
+      name: 'Raphael',
       email: 'parent@example.com',
     });
     expect(result).toEqual({
       status: 'ok',
-      value: { message: 'Great', age: '4 and 7', email: 'parent@example.com' },
+      value: { message: 'Great', name: 'Raphael', email: 'parent@example.com' },
     });
   });
 
@@ -51,8 +51,8 @@ describe('validateFeedback', () => {
     expect(result).toEqual({ status: 'ok', value: { message: 'Hi' } });
   });
 
-  it('rejects an over-long age', () => {
-    expect(validateFeedback({ message: 'Hi', age: 'y'.repeat(LIMITS.age + 1) }).status).toBe('error');
+  it('rejects an over-long name', () => {
+    expect(validateFeedback({ message: 'Hi', name: 'y'.repeat(LIMITS.name + 1) }).status).toBe('error');
   });
 
   it('reports honeypot hits separately from errors', () => {
@@ -62,7 +62,7 @@ describe('validateFeedback', () => {
 
   it('treats non-string fields as absent', () => {
     expect(validateFeedback({ message: 42 }).status).toBe('error');
-    expect(validateFeedback({ message: 'Hi', age: 5, email: null })).toEqual({
+    expect(validateFeedback({ message: 'Hi', name: 5, email: null })).toEqual({
       status: 'ok',
       value: { message: 'Hi' },
     });
