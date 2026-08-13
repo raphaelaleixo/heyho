@@ -1,0 +1,25 @@
+{
+  "name": "heyho",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Hey Ho, Let's Find! — a free printable scavenger hunt for kids at music festivals",
+  "scripts": {
+    "dev": "vercel dev",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "fonts": "node scripts/fetch-fonts.mjs",
+    "previews": "bash scripts/render-previews.sh",
+    "og": "bash scripts/render-og.sh"
+  },
+  "dependencies": {
+    "resend": "^6.19.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "@vercel/node": "^5.9.9",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  }
+}
