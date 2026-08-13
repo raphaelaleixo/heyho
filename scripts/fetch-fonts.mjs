@@ -37,7 +37,12 @@ for (const block of css.split('@font-face').slice(1)) {
   if (!subset) continue;
 
   const file = `${family.toLowerCase().replaceAll(' ', '-')}-${subset.name}.woff2`;
-  const bytes = Buffer.from(await fetch(src).then((r) => r.arrayBuffer()));
+  const bytes = Buffer.from(
+    await fetch(src).then((r) => {
+      if (!r.ok) throw new Error(`${src} answered ${r.status}`);
+      return r.arrayBuffer();
+    }),
+  );
   await writeFile(new URL(file, OUT_DIR), bytes);
   console.log(`${file}  ${(bytes.length / 1024).toFixed(1)} kB`);
 

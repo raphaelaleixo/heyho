@@ -967,7 +967,12 @@ if ! command -v pdftoppm >/dev/null 2>&1; then
 fi
 
 rm -f "$OUT_DIR"/page-*.png
-pdftoppm -png -r 110 -aa yes -aaVector yes "$PDF" "$OUT_DIR/page"
+
+# Cap the width rather than fixing a DPI: the sheet's page geometry is not
+# ours to predict (the current draft is poster-sized, and -r 110 rasterised it
+# at 2934px wide, 3.7 MB for the pair). The previews are displayed at roughly
+# half a phone screen, and this page has to load on festival mobile data.
+pdftoppm -png -scale-to-x 900 -scale-to-y -1 -aa yes -aaVector yes "$PDF" "$OUT_DIR/page"
 
 ls -1 "$OUT_DIR"/page-*.png
 ```
