@@ -184,3 +184,68 @@ a { color: inherit; }
   font-size: 0.85rem;
   color: #5a564c;
 }
+
+/* ---------- Reply card ---------- */
+
+.reply {
+  background: #fff;
+  border-style: dashed;
+  border-radius: 4px;
+  padding: 1.25rem 1.1rem 1.4rem;
+  transform: rotate(-0.5deg);
+  box-shadow: 6px 6px 0 color-mix(in srgb, var(--ink) 15%, transparent);
+}
+
+.reply__note { margin: -0.4rem 0 1rem; font-size: 0.85rem; color: #5a564c; }
+
+.field { margin-bottom: 0.9rem; }
+.field__label { display: block; margin-bottom: 0.3rem; font-size: 0.9rem; }
+
+.field__input {
+  width: 100%;
+  padding: 0.55rem 0.6rem;
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  background: #fffdf6;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.field__input::placeholder { color: #8a857a; }
+
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+/* Honeypot: hidden from people, present for bots. Never display:none — some
+   bots skip hidden inputs, and this one needs to look fillable. */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.button--send {
+  background: var(--yellow);
+  box-shadow: 5px 5px 0 var(--ink);
+  transform: rotate(-1deg);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.button--send:hover { transform: rotate(-1deg) translate(-1px, -1px); }
+.button--send:active { transform: rotate(-1deg) translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.button--send[disabled] { opacity: 0.6; cursor: progress; }
+
+.reply__status { margin: 0.9rem 0 0; font-size: 0.95rem; min-height: 1.5rem; }
+.reply__status--error { color: #b3003c; }
+
+.footer {
+  margin-top: 2.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #5a564c;
+}
+
+.footer a { text-decoration: none; border-bottom: 2px solid var(--pink); }

@@ -73,8 +73,44 @@
       <p>Going to events with my daughter made me realise how handy it is to have extra entertainment for the little ones.</p>
       <p>If this activity made your festival easier, or your kids enjoyed it, I'd be thrilled to know.</p>
     </section>
+
+    <section class="section" aria-labelledby="tell-me">
+      <form class="sticker reply" id="reply" action="/api/feedback" method="post">
+        <h2 class="display section__title" id="tell-me">Tell me how it went</h2>
+        <p class="reply__note">This goes straight to my inbox. Nothing is published, and I'll only ever write back to a grown-up.</p>
+
+        <div class="field">
+          <label class="display field__label" for="message">How did it go?</label>
+          <textarea class="field__input" id="message" name="message" rows="4" maxlength="2000" required></textarea>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label class="display field__label" for="age">Kids' ages</label>
+            <input class="field__input" id="age" name="age" type="text" maxlength="40" autocomplete="off" placeholder="optional">
+          </div>
+          <div class="field">
+            <label class="display field__label" for="email">Your email</label>
+            <input class="field__input" id="email" name="email" type="email" maxlength="200" autocomplete="email" placeholder="optional">
+          </div>
+        </div>
+
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Leave this empty</label>
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button class="display button button--send" type="submit">Send it →</button>
+        <p class="reply__status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <p>Made by <a href="https://ludoratory.com">Ludoratory</a> — more games and printables.</p>
+    </footer>
   </div>
 </main>
 
+<script src="/app.js" type="module"></script>
 </body>
 </html>
