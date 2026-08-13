@@ -17,7 +17,7 @@ function page(title: string, body: string): string {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${escapeHtml(title)} · Hey Ho, Let's Find!</title>
+<title>${escapeHtml(title)} · Ho Hey, Let's Play!</title>
 </head>
 <body style="margin:0;background:#f7f4e9;color:#141414;font:16px/1.6 system-ui,sans-serif">
 <main style="max-width:32rem;margin:0 auto;padding:3rem 1.5rem">

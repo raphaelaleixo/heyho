@@ -15,17 +15,17 @@ describe('buildFeedbackEmail', () => {
       { message: 'We used this at Hellfest and my son filled every box' },
       options,
     );
-    expect(mail.subject).toBe('Hey Ho feedback — We used this at Hellfest and…');
+    expect(mail.subject).toBe('Ho Hey feedback — We used this at Hellfest and…');
   });
 
   it('uses the whole message as the subject when it is short', () => {
     const mail = buildFeedbackEmail({ message: 'Brilliant, thanks' }, options);
-    expect(mail.subject).toBe('Hey Ho feedback — Brilliant, thanks');
+    expect(mail.subject).toBe('Ho Hey feedback — Brilliant, thanks');
   });
 
   it('collapses newlines in the subject', () => {
     const mail = buildFeedbackEmail({ message: 'Great\nfun\nthanks' }, options);
-    expect(mail.subject).toBe('Hey Ho feedback — Great fun thanks');
+    expect(mail.subject).toBe('Ho Hey feedback — Great fun thanks');
   });
 
   it('sets reply-to when the parent left an address', () => {
@@ -59,7 +59,7 @@ describe('buildFeedbackEmail', () => {
       { message: 'Exactly twenty nine chars now' },
       options,
     );
-    expect(mail.subject).toBe('Hey Ho feedback — Exactly twenty nine chars now');
+    expect(mail.subject).toBe('Ho Hey feedback — Exactly twenty nine chars now');
     expect(mail.subject).not.toContain('…');
   });
 
@@ -68,7 +68,7 @@ describe('buildFeedbackEmail', () => {
       { message: 'Exactly twenty nine chars now!' },
       options,
     );
-    expect(mail.subject).toBe('Hey Ho feedback — Exactly twenty nine chars now…');
+    expect(mail.subject).toBe('Ho Hey feedback — Exactly twenty nine chars now…');
     expect(mail.subject).toContain('…');
   });
 });

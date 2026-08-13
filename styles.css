@@ -1,13 +1,14 @@
-/* Hey Ho, Let's Find! — hand-written, no build step, no framework.
+/* Ho Hey, Let's Play! — hand-written, no build step, no framework.
    Sour Gummy (900) shouts, Jua talks. */
 
 :root {
   --ink: #141414;
   --paper: #f7f4e9;
-  --pink: #ff2d6f;
-  --yellow: #ffd93d;
-  --green: #39e08a;
-  --cyan: #4dd0f7;
+  --gray: #ded9cb;      /* warm offwhite fill, for contrast against paper */
+  --muted: #5a564c;     /* quiet text on paper */
+  --muted-dark: #7d7869; /* the title's offset shadow — decorative, not text */
+  --muted-light: #a9a49a; /* quiet TEXT on the ink stage: 7.4:1, unlike --muted-dark */
+  --yellow: #ffd93d;    /* the only colour left — reserved for calls to action */
   --stroke: 3px;
   --wrap: 34rem;
 
@@ -33,10 +34,13 @@ img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 
 :focus-visible {
-  outline: 3px solid var(--pink);
+  outline: 3px solid var(--ink);
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+/* An ink ring is invisible against the stage, so the hero borrows the CTA yellow. */
+.stage :focus-visible { outline-color: var(--yellow); }
 
 .display {
   font-family: var(--font-display);
@@ -65,7 +69,10 @@ a { color: inherit; }
   position: relative;
   overflow: hidden;
   background: var(--ink);
-  padding-block: 3rem 2.5rem;
+  /* Extra bottom padding clears the skewed edge below. */
+  padding-block: 3rem 5rem;
+  /* The stage ends on a slant instead of square across the page. */
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2.5rem), 0 100%);
 }
 
 .stage__checker {
@@ -74,20 +81,17 @@ a { color: inherit; }
   right: -3rem;
   width: 14rem;
   height: 14rem;
-  background: repeating-conic-gradient(var(--pink) 0 25%, var(--ink) 0 50%) 0 0 / 2rem 2rem;
+  background: repeating-conic-gradient(var(--paper) 0 25%, var(--ink) 0 50%) 0 0 / 2rem 2rem;
   transform: rotate(12deg);
 }
 
 .stage > .wrap { position: relative; }
 
-.stage__title {
-  margin: 0;
-  font-size: clamp(2.75rem, 13vw, 4rem);
-  color: var(--yellow);
-  -webkit-text-stroke: 4px var(--ink);
-  paint-order: stroke fill;
-  text-shadow: 6px 6px 0 var(--pink);
-}
+.stage__title { margin: 0; }
+
+/* The wordmark carries its own black plate and outline, so it sits on the
+   stage without further treatment. */
+.stage__logo { width: min(100%, 30rem); height: auto; }
 
 .stage__lede {
   margin: 1.25rem 0 0;
@@ -108,34 +112,24 @@ a { color: inherit; }
   padding: 0.85rem 1.4rem;
   border: var(--stroke) solid var(--ink);
   border-radius: 999px;
-  background: var(--green);
+  background: var(--yellow);
   color: var(--ink);
   font-size: 1.125rem;
   text-decoration: none;
-  box-shadow: 5px 5px 0 var(--yellow);
+  box-shadow: 5px 5px 0 var(--paper);
   transform: rotate(-1.5deg);
 }
 
-.button:hover { transform: rotate(-1.5deg) translate(-1px, -1px); box-shadow: 6px 6px 0 var(--yellow); }
-.button:active { transform: rotate(-1.5deg) translate(2px, 2px); box-shadow: 2px 2px 0 var(--yellow); }
+/* Hovering presses the button part-way into the page; activating it presses
+   all the way, until the offset shadow is gone. */
+.button:hover { transform: rotate(-1.5deg) translate(2px, 2px); box-shadow: 3px 3px 0 var(--paper); }
+.button:active { transform: rotate(-1.5deg) translate(5px, 5px); box-shadow: 0 0 0 var(--paper); }
 
 .downloads__meta {
   display: block;
   margin-top: 0.6rem;
-  color: #a9a49a;
-  font-size: 0.85rem;
-}
-
-/* ---------- Torn edge between stage and paper ---------- */
-
-.tear {
-  height: 1rem;
-  background: var(--paper);
-  clip-path: polygon(
-    0 55%, 4% 15%, 9% 62%, 14% 22%, 20% 68%, 26% 18%, 32% 60%, 38% 25%,
-    44% 70%, 50% 20%, 56% 64%, 62% 22%, 68% 66%, 74% 18%, 80% 60%,
-    86% 26%, 92% 64%, 97% 20%, 100% 58%, 100% 100%, 0 100%
-  );
+  color: var(--muted-light);
+  font-size: 1rem;
 }
 
 .paper { padding-block: 0.5rem 3rem; }
@@ -159,14 +153,21 @@ a { color: inherit; }
 .card:nth-child(2) { transform: rotate(0.8deg); }
 .card:nth-child(3) { transform: rotate(-0.6deg); }
 
-.card--cyan  { background: var(--cyan); }
-.card--pink  { background: var(--pink); color: #fff; }
-.card--green { background: var(--green); }
+/* No colour to separate the three, so they alternate paper / inverted / grey. */
+.card--plain  { background: #fff; }
+.card--invert { background: var(--ink); color: var(--paper); }
+.card--gray   { background: var(--gray); }
 
 .card__title { margin: 0 0 0.25rem; font-size: 1.1rem; }
 .card__text { margin: 0; font-size: 0.95rem; line-height: 1.5; }
 
-.previews { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+/* ---------- Take a look ---------- */
+
+.look { display: grid; gap: 1.5rem; }
+
+/* Page two sits behind page one, offset so you can see it's there. The stack
+   is sized by the front sheet; the back one is positioned against it. */
+.sheets { position: relative; }
 
 .preview {
   display: block;
@@ -175,14 +176,69 @@ a { color: inherit; }
   box-shadow: 4px 4px 0 color-mix(in srgb, var(--ink) 14%, transparent);
 }
 
-.preview:nth-child(1) { transform: rotate(-2deg); }
-.preview:nth-child(2) { transform: rotate(1.6deg); }
+.preview--front { position: relative; transform: rotate(-1.5deg); width: 88%; }
 
-.section > p.previews__meta {
-  margin: 1.1rem 0 0;
-  text-align: center;
-  font-size: 0.85rem;
-  color: #5a564c;
+.preview--back {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 88%;
+  transform: rotate(3deg);
+}
+
+/* Hovering the back sheet slides it further out rather than bringing it
+   forward — it stays behind, it just peeks. */
+.preview--back { transition: transform 160ms ease-out; }
+.preview--back:hover, .preview--back:focus-visible { transform: rotate(3deg) translateX(1.75rem); }
+
+.look__aside { display: flex; flex-direction: column; gap: 0.9rem; }
+
+.look__hint,
+.look__privacy { margin: 0; font-size: 1rem; color: var(--muted); }
+
+/* ---------- Full-size sheet pages ---------- */
+
+/* Opening a page is a real navigation, so the morph is declarative: both
+   documents opt in, and the thumbnail and the full-size image share a name.
+   No script involved. Browsers without cross-document transitions (Firefox
+   today) simply navigate instantly. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+}
+
+.preview--front img { view-transition-name: sheet-1; }
+.preview--back img { view-transition-name: sheet-2; }
+.sheet-view__img--1 { view-transition-name: sheet-1; }
+.sheet-view__img--2 { view-transition-name: sheet-2; }
+
+.sheet-page { background: var(--ink); color: var(--paper); }
+
+.sheet-view {
+  padding-block: 1.5rem 3rem;
+  display: grid;
+  justify-items: center;
+  gap: 1.25rem;
+}
+
+.sheet-view__back { justify-self: start; box-shadow: 5px 5px 0 var(--paper); }
+
+.sheet-view__img {
+  width: min(100%, 44rem);
+  border: 3px solid var(--ink);
+  background: #fff;
+}
+
+.sheet-view__meta { margin: 0; font-size: 0.9rem; color: var(--muted-light); text-align: center; }
+.sheet-view__meta a { text-decoration: none; border-bottom: 1px solid currentColor; }
+.sheet-view :focus-visible { outline-color: var(--yellow); }
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+  .preview--back { transition: none; }
 }
 
 /* ---------- Reply card ---------- */
@@ -196,7 +252,7 @@ a { color: inherit; }
   box-shadow: 6px 6px 0 color-mix(in srgb, var(--ink) 15%, transparent);
 }
 
-.reply__note { margin: -0.4rem 0 1rem; font-size: 0.85rem; color: #5a564c; }
+.reply__note { margin: -0.4rem 0 1rem; font-size: 0.85rem; color: var(--muted); }
 
 .field { margin-bottom: 0.9rem; }
 .field__label { display: block; margin-bottom: 0.3rem; font-size: 0.9rem; }
@@ -234,18 +290,150 @@ a { color: inherit; }
   cursor: pointer;
 }
 
-.button--send:hover { transform: rotate(-1deg) translate(-1px, -1px); }
-.button--send:active { transform: rotate(-1deg) translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.button--send:hover { transform: rotate(-1deg) translate(2px, 2px); box-shadow: 3px 3px 0 var(--ink); }
+.button--send:active { transform: rotate(-1deg) translate(5px, 5px); box-shadow: 0 0 0 var(--ink); }
 .button--send[disabled] { opacity: 0.6; cursor: progress; }
 
 .reply__status { margin: 0.9rem 0 0; font-size: 0.95rem; min-height: 1.5rem; }
-.reply__status--error { color: #b3003c; }
 
-.footer {
-  margin-top: 2.5rem;
-  text-align: center;
-  font-size: 0.85rem;
-  color: #5a564c;
+/* Without a red to lean on, an error is marked by a heavy rule instead. */
+.reply__status--error {
+  border-left: 4px solid var(--ink);
+  padding-left: 0.6rem;
 }
 
-.footer a { text-decoration: none; border-bottom: 2px solid var(--pink); }
+/* Same shape as the other Ludoratory projects: mark, then two quiet lines. */
+.footer {
+  margin-top: 2.5rem;
+  padding-block: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* The mark ships slate-blue; flatten it to ink so it sits in the palette. */
+.footer__mark { flex: none; filter: brightness(0); opacity: 0.55; }
+
+.footer__text { flex: 1; min-width: 11rem; }
+.footer__text p { margin: 0; }
+
+.footer a { text-decoration: none; border-bottom: 1px solid currentColor; }
+
+/* ---------- Desktop ----------
+   The column widens and the type steps up, but prose keeps its own narrower
+   measure — a 52rem line of body copy is a chore to read. Only the pieces
+   that gain from width (the cards, the previews) use the full column. */
+
+@media (min-width: 48rem) {
+  :root { --wrap: 52rem; }
+
+  body { font-size: 1.1875rem; }
+
+  .stage { padding-block: 4.5rem 3.5rem; }
+
+  /* The check scales with the block — otherwise a bigger patch is just more
+     of the same small squares, which reads as texture rather than pattern.
+     Size stays an exact multiple of the tile (8 × 3rem) so the cut edges
+     land on whole squares instead of slicing the last row. */
+  .stage__checker {
+    width: 24rem; height: 24rem; top: -5rem; right: -5rem;
+    background-size: 3rem 3rem;
+  }
+
+  .stage__logo { width: min(100%, 36rem); }
+
+  .stage__lede {
+    margin-top: 1.75rem;
+    max-width: 30rem;
+    padding: 1rem 1.15rem;
+    font-size: 1.15rem;
+  }
+
+  .downloads { margin-top: 2.25rem; }
+  .button { padding: 1rem 1.75rem; font-size: 1.25rem; }
+  .downloads__meta { font-size: 0.95rem; }
+
+  .section { margin-top: 3.5rem; }
+  .section__title { font-size: 2rem; margin-bottom: 1.2rem; }
+  .section > p { max-width: 40rem; }
+
+  /* Three across, stretched to a common height — the row reads as one shelf
+     rather than three loose stickers with ragged bottoms. */
+  .cards { grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+  .card { padding: 1.1rem 1.2rem; }
+  .card__title { font-size: 1.25rem; }
+  .card__text { font-size: 1rem; }
+
+  /* Sheets left, download and its small print right. */
+  .look { grid-template-columns: minmax(0, 1fr) minmax(14rem, 1fr); gap: 2.25rem; align-items: center; }
+  .sheets { max-width: 22rem; }
+  .look__hint,
+  .look__privacy { font-size: 1.1rem; }
+  .downloads__meta { font-size: 1.1rem; }
+
+  /* Full width, with the two optional fields stacked beside the message box
+     so the card stops looking like a long ribbon on a wide screen. */
+  .reply {
+    max-width: none;
+    padding: 1.75rem 1.6rem 2rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(12rem, 1fr);
+    column-gap: 1.5rem;
+    align-items: start;
+  }
+  .reply > .section__title,
+  .reply__note,
+  .button--send,
+  .reply__status { grid-column: 1 / -1; }
+  .field:has(textarea) { grid-column: 1; margin-bottom: 0; }
+  .field:has(textarea) .field__input { min-height: 9.5rem; }
+  .field-row { grid-column: 2; grid-template-columns: 1fr; gap: 0.9rem; }
+  .button--send { margin-top: 1.1rem; justify-self: start; }
+  .reply__note { font-size: 0.95rem; }
+  .field__label { font-size: 1rem; }
+
+  .footer { margin-top: 3.5rem; font-size: 0.95rem; }
+}
+
+/* ---------- Wide desktop ----------
+   A second step for real monitors. The column keeps growing but the prose
+   measure only creeps — the extra width goes to the hero, the card shelf and
+   the sheet previews, which are the things worth looking at large. */
+
+@media (min-width: 75rem) {
+  :root { --wrap: 68rem; }
+
+  body { font-size: 1.25rem; }
+
+  .stage { padding-block: 6rem 4.5rem; }
+  /* 8 × 4rem — again an exact multiple, so no sliced squares at the edges. */
+  .stage__checker {
+    width: 32rem; height: 32rem; top: -7rem; right: -7rem;
+    background-size: 4rem 4rem;
+  }
+
+  .stage__logo { width: min(100%, 42rem); }
+
+  .stage__lede { max-width: 34rem; font-size: 1.3rem; padding: 1.15rem 1.35rem; }
+
+  .button { padding: 1.15rem 2rem; font-size: 1.35rem; }
+
+  .section { margin-top: 4.5rem; }
+  .section__title { font-size: 2.4rem; }
+  .section > p { max-width: 44rem; }
+
+  .cards { gap: 1.5rem; }
+  .card { padding: 1.4rem 1.5rem; }
+  .card__title { font-size: 1.4rem; }
+  .card__text { font-size: 1.05rem; }
+
+  .look { grid-template-columns: minmax(0, 1fr) minmax(16rem, 1fr); gap: 3rem; }
+  .sheets { max-width: 26rem; }
+
+  .reply { padding: 2rem 1.9rem 2.25rem; column-gap: 2rem; }
+  .field:has(textarea) .field__input { min-height: 11rem; }
+}

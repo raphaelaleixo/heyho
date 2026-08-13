@@ -1,6 +1,6 @@
 import type { Feedback } from './validate.js';
 
-const SUBJECT_PREFIX = 'Hey Ho feedback — ';
+const SUBJECT_PREFIX = 'Ho Hey feedback — ';
 const SUBJECT_MAX = 48;
 const EXCERPT_MAX = SUBJECT_MAX - SUBJECT_PREFIX.length - 1; // room for the ellipsis
 

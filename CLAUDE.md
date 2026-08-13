@@ -1,4 +1,4 @@
-# CLAUDE.md — Hey Ho, Let's Find!
+# CLAUDE.md — Ho Hey, Let's Play!
 
 A one-page site that gives away a printable scavenger hunt for kids at music
 festivals, and emails the author any feedback a parent writes.

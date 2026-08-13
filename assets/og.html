@@ -6,21 +6,25 @@
 <style>
   body {
     margin: 0; width: 1200px; height: 630px; overflow: hidden;
-    background: #141414; color: #ffd93d;
+    background: #141414; color: #f7f4e9;
     font-family: 'Jua', sans-serif;
     display: flex; align-items: center; gap: 3rem; padding: 0 4.5rem;
     position: relative;
   }
   .checker {
     position: absolute; top: -80px; right: -80px; width: 380px; height: 380px;
-    background: repeating-conic-gradient(#ff2d6f 0 25%, #141414 0 50%) 0 0 / 54px 54px;
+    background: repeating-conic-gradient(#f7f4e9 0 25%, #141414 0 50%) 0 0 / 54px 54px;
     transform: rotate(12deg);
   }
   h1 {
     font-family: 'Sour Gummy', sans-serif; font-weight: 900; text-transform: uppercase;
     font-size: 88px; line-height: 1; margin: 0;
-    -webkit-text-stroke: 8px #141414; paint-order: stroke fill;
-    text-shadow: 12px 12px 0 #ff2d6f;
+    /* Hollow lettering, matching the page and the sheet itself. The ink fill
+       paints over the stroke's inner half, hiding the seams where Sour
+       Gummy's overlapping stems meet. */
+    color: #141414;
+    -webkit-text-stroke: 11px #f7f4e9;
+    paint-order: stroke fill;
   }
   p {
     margin: 28px 0 0; max-width: 30ch; font-size: 27px; line-height: 1.45;
@@ -39,7 +43,7 @@
 <body>
   <div class="checker"></div>
   <div>
-    <h1>Hey Ho,<br>Let's Find!</h1>
+    <img src="logo.svg" alt="" style="width:520px;display:block">
     <p>A free print-and-go scavenger hunt for kids at a music festival.</p>
   </div>
   <div class="sheets">

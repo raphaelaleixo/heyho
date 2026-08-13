@@ -68,7 +68,7 @@ describe('POST /api/feedback', () => {
     expect(send.mock.calls[0][0]).toMatchObject({
       to: 'author@example.com',
       from: 'onboarding@resend.dev',
-      subject: 'Hey Ho feedback — My kid loved it',
+      subject: 'Ho Hey feedback — My kid loved it',
     });
     expect(res.statusCode).toBe(200);
     expect(res.body).toEqual({ ok: true });
