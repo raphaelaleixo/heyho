@@ -89,35 +89,66 @@ a { color: inherit; }
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2.5rem), 0 100%);
 }
 
-.stage__checker {
-  position: absolute;
-  top: -3rem;
-  right: -3rem;
-  width: 14rem;
-  height: 14rem;
-  background: repeating-conic-gradient(var(--ink) 0 25%, var(--paper) 0 50%) 0 0 / 2rem 2rem;
-  transform: rotate(12deg);
-}
-
-.stage > .wrap { position: relative; }
-
 .stage__title { margin: 0; }
 
 /* The wordmark carries its own black plate and outline, so it sits on the
    stage without further treatment. */
-.stage__logo { width: min(100%, 26rem); height: auto; }
+.stage__logo { width: min(100%, 21rem); height: auto; }
 
 .stage__lede {
   margin: 1.5rem 0 0;
   max-width: 26rem;
-  font-size: 1.15rem;
+  font-size: 1.35rem;
   line-height: 1.5;
+}
+
+/* The same hand-drawn double rule that sits under this phrase on the sheet
+   and the social card. Drawn as a pseudo-element rather than an inline <svg>
+   so it is invisible to assistive tech, and stretched to whatever the phrase
+   measures. nowrap keeps the phrase whole: split across a line break it would
+   draw the rule twice, at two wrong widths. */
+.drawn-rule {
+  position: relative;
+  white-space: nowrap;
+}
+
+/* Absolutely positioned so the rule adds no height to the line box — as
+   padding on an inline-block it would push the following line down and open
+   a gap wider than the line-height wherever the lede wraps. */
+.drawn-rule::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  /* Matches the artwork's own 289×21, so the stroke keeps its drawn weight
+     instead of being squashed to whatever height we happened to pick. */
+  aspect-ratio: 289 / 21;
+  background: url('/assets/underline.svg') no-repeat center top / 100% 100%;
 }
 
 .downloads { list-style: none; margin: 1.75rem 0 0; padding: 0; }
 
-/* The hero's jump button stands clear of the lede above it. */
-.stage .button { margin-top: 2rem; }
+/* The hero's jump row stands clear of the lede above it. The margin lives on
+   the row rather than the button so the note beside it shares the same top. */
+.stage__cta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.25rem;
+  margin-top: 2rem;
+}
+
+/* Quiet small print next to the call to action — the hero is the light block,
+   so this is the one place --muted is the right colour. */
+.stage__note {
+  margin: 0;
+  max-width: 17rem;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
 .downloads li + li { margin-top: 1rem; }
 
 .button {
@@ -305,7 +336,11 @@ a { color: inherit; }
 
 .field__input::placeholder { color: #6b6659; }
 
-.field-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0.75rem; }
+/* One field per line. The auto-fit this used to carry only ever produced two
+   columns between about 300px and 48rem — that is, on phones, where it split
+   the form in half and left both inputs too narrow to read what you typed.
+   Above 48rem the aside column stacks them regardless. */
+.field-row { display: grid; gap: 0.75rem; }
 
 /* Honeypot: hidden from people, present for bots. Never display:none — some
    bots skip hidden inputs, and this one needs to look fillable. */
@@ -368,21 +403,12 @@ a { color: inherit; }
 
   .stage { padding-block: 4.5rem 3.5rem; }
 
-  /* The check scales with the block — otherwise a bigger patch is just more
-     of the same small squares, which reads as texture rather than pattern.
-     Size stays an exact multiple of the tile (8 × 3rem) so the cut edges
-     land on whole squares instead of slicing the last row. */
-  .stage__checker {
-    width: 24rem; height: 24rem; top: -5rem; right: -5rem;
-    background-size: 3rem 3rem;
-  }
+  .stage__logo { width: min(100%, 26rem); }
 
-  .stage__logo { width: min(100%, 32rem); }
-
-  .stage__lede { margin-top: 1.75rem; max-width: 30rem; font-size: 1.3rem; }
+  .stage__lede { margin-top: 1.75rem; max-width: 34rem; font-size: 1.6rem; }
 
   .downloads { margin-top: 2.25rem; }
-  .stage .button { margin-top: 2.75rem; }
+  .stage__cta { margin-top: 2.75rem; }
   .button { padding: 1rem 1.75rem; font-size: 1.25rem; }
   .downloads__meta { font-size: 0.95rem; }
 
@@ -419,7 +445,7 @@ a { color: inherit; }
   .reply__status { grid-column: 1 / -1; }
   .field:has(textarea) { grid-column: 1; margin-bottom: 0; }
   .field:has(textarea) .field__input { min-height: 9.5rem; }
-  .field-row { grid-column: 2; grid-template-columns: 1fr; gap: 0.9rem; }
+  .field-row { grid-column: 2; gap: 0.9rem; }
   .button--send { margin-top: 1.1rem; justify-self: start; }
 
   .footer { margin-top: 3.5rem; font-size: 0.95rem; }
@@ -436,15 +462,10 @@ a { color: inherit; }
   body { font-size: 1.25rem; }
 
   .stage { padding-block: 6rem 4.5rem; }
-  /* 8 × 4rem — again an exact multiple, so no sliced squares at the edges. */
-  .stage__checker {
-    width: 32rem; height: 32rem; top: -7rem; right: -7rem;
-    background-size: 4rem 4rem;
-  }
 
-  .stage__logo { width: min(100%, 38rem); }
+  .stage__logo { width: min(100%, 30rem); }
 
-  .stage__lede { max-width: 34rem; font-size: 1.5rem; }
+  .stage__lede { max-width: 40rem; font-size: 1.85rem; }
 
   .button { padding: 1.15rem 2rem; font-size: 1.35rem; }
 
