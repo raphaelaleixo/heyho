@@ -4,51 +4,34 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
+  /* Screenshotted by scripts/render-og.sh into assets/og.png at 1200×630.
+     Just the wordmark and the line under it — a link preview is seen at
+     thumbnail size, so the sheets themselves were unreadable there anyway. */
   body {
     margin: 0; width: 1200px; height: 630px; overflow: hidden;
-    background: #141414; color: #f7f4e9;
+    /* Paper ground, like the hero — it's what makes the wordmark's black
+       contour visible instead of merging into the background. */
+    background: #f7f4e9; color: #141414;
     font-family: 'Jua', sans-serif;
-    display: flex; align-items: center; gap: 3rem; padding: 0 4.5rem;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0 5.5rem;
     position: relative;
   }
   .checker {
-    position: absolute; top: -80px; right: -80px; width: 380px; height: 380px;
-    background: repeating-conic-gradient(#f7f4e9 0 25%, #141414 0 50%) 0 0 / 54px 54px;
+    position: absolute; top: -80px; right: -80px; width: 432px; height: 432px;
+    background: repeating-conic-gradient(#141414 0 25%, #f7f4e9 0 50%) 0 0 / 54px 54px;
     transform: rotate(12deg);
   }
-  h1 {
-    font-family: 'Sour Gummy', sans-serif; font-weight: 900; text-transform: uppercase;
-    font-size: 88px; line-height: 1; margin: 0;
-    /* Hollow lettering, matching the page and the sheet itself. The ink fill
-       paints over the stroke's inner half, hiding the seams where Sour
-       Gummy's overlapping stems meet. */
-    color: #141414;
-    -webkit-text-stroke: 11px #f7f4e9;
-    paint-order: stroke fill;
-  }
+  .mark { width: 700px; display: block; position: relative; }
   p {
-    margin: 28px 0 0; max-width: 30ch; font-size: 27px; line-height: 1.45;
-    color: #141414; background: #f7f4e9; padding: 16px 18px;
-    transform: rotate(-0.8deg); box-shadow: 8px 8px 0 rgb(0 0 0 / .55);
+    margin: 44px 0 0; max-width: 26ch; font-size: 34px; line-height: 1.4;
+    position: relative;
   }
-  .sheets { display: flex; gap: 18px; flex: none; position: relative; }
-  .sheets img {
-    width: 210px; border: 4px solid #141414; background: #fff;
-    box-shadow: 10px 10px 0 rgb(0 0 0 / .5);
-  }
-  .sheets img:first-child { transform: rotate(-4deg); }
-  .sheets img:last-child { transform: rotate(3deg); }
 </style>
 </head>
 <body>
   <div class="checker"></div>
-  <div>
-    <img src="logo.svg" alt="" style="width:520px;display:block">
-    <p>A free print-and-go scavenger hunt for kids at a music festival.</p>
-  </div>
-  <div class="sheets">
-    <img src="page-1.png" alt="">
-    <img src="page-2.png" alt="">
-  </div>
+  <img class="mark" src="logo.svg" alt="">
+  <p>A free print-and-go scavenger hunt for kids at a music festival.</p>
 </body>
 </html>
