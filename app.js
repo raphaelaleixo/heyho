@@ -38,10 +38,13 @@ form?.addEventListener('submit', async (event) => {
   }
 });
 
-// Count downloads. Page views come along with the analytics script and are
-// simply ignored — there is no download-only mode.
+// Count downloads. A beacon rather than a fetch, because the browser is busy
+// starting the PDF and may leave the page before a normal request finishes —
+// sendBeacon is handed to the OS and outlives the page. Nothing is read back:
+// the link keeps pointing straight at the file, so a blocked or failed beacon
+// costs a count and never the download.
 document.querySelectorAll('[data-sheet]').forEach((link) => {
   link.addEventListener('click', () => {
-    window.va?.('event', { name: 'download', data: { sheet: link.dataset.sheet } });
+    navigator.sendBeacon(`/api/download?sheet=${encodeURIComponent(link.dataset.sheet)}`);
   });
 });

@@ -9,10 +9,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
+    "downloads": "node --disable-warning=ExperimentalWarning --experimental-strip-types --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/downloads.ts",
     "fonts": "node scripts/fetch-fonts.mjs",
     "previews": "bash scripts/render-previews.sh"
   },
   "dependencies": {
+    "@vercel/blob": "^2.8.0",
     "resend": "^6.19.0"
   },
   "devDependencies": {
