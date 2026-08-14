@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-// Downloads the woff2 files for Sour Gummy + Jua and writes a local
+// Downloads the woff2 files for Sour Gummy and writes a local
 // @font-face stylesheet, so the page makes no request to Google at runtime.
 // Re-run with `npm run fonts` if the families ever change.
 import { mkdir, writeFile } from 'node:fs/promises';
 
 const CSS_URL =
-  'https://fonts.googleapis.com/css2?family=Jua&family=Sour+Gummy:wdth,wght@100,100..900&display=swap';
+  'https://fonts.googleapis.com/css2?family=Sour+Gummy:wdth,wght@100,100..900&display=swap';
 const CHROME_UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
 const OUT_DIR = new URL('../assets/fonts/', import.meta.url);

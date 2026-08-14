@@ -1,5 +1,5 @@
 /* Ho Hey, Let's Play! — hand-written, no build step, no framework.
-   Sour Gummy (900) shouts, Jua talks. */
+   One family throughout: Sour Gummy shouts at 900, talks at 400. */
 
 :root {
   --ink: #141414;
@@ -14,7 +14,7 @@
   --wrap: 34rem;
 
   --font-display: 'Sour Gummy', 'Trebuchet MS', system-ui, sans-serif;
-  --font-body: 'Jua', 'Trebuchet MS', system-ui, sans-serif;
+  --font-body: 'Sour Gummy', 'Trebuchet MS', system-ui, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }

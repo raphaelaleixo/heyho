@@ -26,7 +26,7 @@ Do not "fix" these by aligning with the parent stack.
 - `api/feedback.ts` — the only endpoint. **Every file in `api/` becomes a public
   route**, so shared code lives in `lib/`
 - `lib/` — pure, unit-tested modules: validation, email composition, responses
-- `scripts/` — asset generation: fonts, PDF previews, OG image
+- `scripts/` — asset generation: fonts, PDF previews
 - `assets/` — the PDF, its preview renders, fonts, the social card
 
 ## Commands
@@ -37,8 +37,14 @@ npm run typecheck # tsc --noEmit
 npm run serve     # vercel dev (needs `vercel link` once)
 npm run fonts     # re-download the self-hosted woff2 files
 npm run previews  # re-render page-1.png / page-2.png from the PDF
-npm run og        # re-render the 1200×630 social card
 ```
+
+`assets/og.png` is **hand-made, not generated** — it is a drawn 1200×630 card,
+not something a script can reproduce. There used to be an `og.html` plus a
+headless-Chrome `npm run og` that rendered a wordmark-and-line version; both
+were deleted once the card became artwork, because running them would have
+silently overwritten it. Replace the card by dropping in a new 1200×630 PNG and
+updating `og:image:alt` in `index.html` to match.
 
 The dev server script is `serve`, **not** `dev`, and must stay that way. No
 framework is detected here, so `vercel dev` falls back to running `npm run dev`

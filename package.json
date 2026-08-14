@@ -10,8 +10,7 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "fonts": "node scripts/fetch-fonts.mjs",
-    "previews": "bash scripts/render-previews.sh",
-    "og": "bash scripts/render-og.sh"
+    "previews": "bash scripts/render-previews.sh"
   },
   "dependencies": {
     "resend": "^6.19.0"
