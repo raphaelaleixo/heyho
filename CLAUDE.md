@@ -34,11 +34,17 @@ Do not "fix" these by aligning with the parent stack.
 ```sh
 npm test          # vitest
 npm run typecheck # tsc --noEmit
-npm run dev       # vercel dev (needs `vercel link` once)
+npm run serve     # vercel dev (needs `vercel link` once)
 npm run fonts     # re-download the self-hosted woff2 files
 npm run previews  # re-render page-1.png / page-2.png from the PDF
 npm run og        # re-render the 1200×630 social card
 ```
+
+The dev server script is `serve`, **not** `dev`, and must stay that way. No
+framework is detected here, so `vercel dev` falls back to running `npm run dev`
+as its development command — if that script is itself `vercel dev`, the CLI
+detects the recursion and refuses to start at all. Renaming it back breaks the
+only way to run the API locally.
 
 ## When the final PDF arrives
 

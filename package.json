@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Hey Ho, Let's Find! — a free printable scavenger hunt for kids at music festivals",
   "scripts": {
-    "dev": "vercel dev",
+    "serve": "vercel dev",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
@@ -19,7 +19,7 @@
   "devDependencies": {
     "@types/node": "^26.2.0",
     "@vercel/node": "^5.9.9",
-    "typescript": "^7.0.2",
+    "typescript": "^5.9.3",
     "vitest": "^4.1.10"
   }
 }
