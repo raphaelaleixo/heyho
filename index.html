@@ -29,7 +29,7 @@
     <h1 class="stage__title"><img class="stage__logo" src="/assets/logo.svg" width="651" height="240" alt="Ho Hey, Let's Play!"></h1>
     <p class="stage__lede">A DIY scavenger hunt for <span class="drawn-rule">kids in the crowd</span>.</p>
     <div class="stage__cta">
-      <a class="display button" href="#take-a-look">See the sheet ↓</a>
+      <a class="display button" href="#take-a-look">See the sheet <span aria-hidden="true">↓</span></a>
       <p class="stage__note">Paper, pencil, no internet required.</p>
     </div>
   </div>
@@ -55,15 +55,19 @@
 
         <div class="look__aside">
           <ul class="downloads">
+            <!-- Each link is described by its own meta line, so the format, size
+                 and language are part of the link rather than loose text near it. -->
             <li>
-              <a class="display button" href="/assets/heyho-en.pdf" download data-sheet="en">↓ Print it free</a>
-              <span class="downloads__meta">PDF · 2 pages · prints on A4 or Letter · 4 MB · English</span>
+              <a class="display button" href="/assets/heyho-en.pdf" download data-sheet="en"
+                 aria-describedby="sheet-en-meta"><span aria-hidden="true">↓</span> Print it free</a>
+              <span class="downloads__meta" id="sheet-en-meta">PDF · 2 pages · prints on A4 or Letter · 4 MB · English</span>
             </li>
             <!-- The sheet is translated, the page is not. Each variant names its
                  own language in its own language, so it is findable without one. -->
             <li lang="fr">
-              <a class="display button" href="/assets/heyho-fr.pdf" download data-sheet="fr">↓ Imprimez gratuitement</a>
-              <span class="downloads__meta">PDF · 2 pages · s'imprime en A4 ou Letter · 4,5 Mo · Français</span>
+              <a class="display button" href="/assets/heyho-fr.pdf" download data-sheet="fr"
+                 aria-describedby="sheet-fr-meta"><span aria-hidden="true">↓</span> Imprimez gratuitement</a>
+              <span class="downloads__meta" id="sheet-fr-meta">PDF · 2 pages · s'imprime en A4 ou Letter · 4,5 Mo · Français</span>
             </li>
           </ul>
           <p class="look__hint">Tap either page to see it full size.</p>
@@ -108,7 +112,7 @@
     </section>
 
     <section class="section" aria-labelledby="tell-me">
-      <form class="sticker reply" id="reply" action="/api/feedback" method="post">
+      <form class="sticker reply" id="reply" action="/api/feedback" method="post" aria-labelledby="tell-me">
         <h2 class="display section__title" id="tell-me">Tell me how it went</h2>
         <p class="reply__note">This goes straight to my inbox. Nothing is published.</p>
 
@@ -133,20 +137,25 @@
           <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
         </div>
 
-        <button class="display button button--send" type="submit">Send it →</button>
+        <button class="display button button--send" type="submit">Send it <span aria-hidden="true">→</span></button>
         <p class="reply__status" role="status" aria-live="polite" tabindex="-1"></p>
       </form>
     </section>
-
-    <footer class="footer">
-      <img class="footer__mark" src="/assets/ludoratory.svg" width="32" height="41" alt="Ludoratory">
-      <div class="footer__text">
-        <p>Made by <a href="https://ludoratory.com" target="_blank" rel="noopener noreferrer">Raphael Aleixo / Ludoratory</a>.</p>
-        <p>Free to print, share and remix under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>. <a href="/credits">Photo credits</a>.</p>
-      </div>
-    </footer>
   </div>
 </main>
+
+<!-- Outside <main> on purpose: a <footer> descended from it is not a
+     contentinfo landmark, so the licence and credits would be unreachable by
+     landmark navigation. -->
+<footer class="site-footer">
+  <div class="wrap footer">
+    <img class="footer__mark" src="/assets/ludoratory.svg" width="32" height="41" alt="">
+    <div class="footer__text">
+      <p>Made by <a href="https://ludoratory.com" target="_blank" rel="noopener noreferrer">Raphael Aleixo / Ludoratory</a>.</p>
+      <p>Free to print, share and remix under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>. <a href="/credits">Photo credits</a>.</p>
+    </div>
+  </div>
+</footer>
 
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>

@@ -89,15 +89,20 @@
       <p class="credits__note">Corrections welcome — the reply card on the <a href="/">home page</a> reaches me.</p>
     </section>
 
-    <footer class="footer">
-      <img class="footer__mark" src="/assets/ludoratory.svg" width="32" height="41" alt="Ludoratory">
-      <div class="footer__text">
-        <p>Made by <a href="https://ludoratory.com" target="_blank" rel="noopener noreferrer">Raphael Aleixo / Ludoratory</a>.</p>
-        <p><a href="/">Back to the sheet</a></p>
-      </div>
-    </footer>
   </div>
 </main>
+
+<!-- Outside <main> on purpose: a <footer> descended from it is not a
+     contentinfo landmark. -->
+<footer class="site-footer">
+  <div class="wrap footer">
+    <img class="footer__mark" src="/assets/ludoratory.svg" width="32" height="41" alt="">
+    <div class="footer__text">
+      <p>Made by <a href="https://ludoratory.com" target="_blank" rel="noopener noreferrer">Raphael Aleixo / Ludoratory</a>.</p>
+      <p><a href="/">Back to the sheet</a></p>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
