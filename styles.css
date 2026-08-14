@@ -149,7 +149,10 @@ a { color: inherit; }
   line-height: 1.35;
 }
 
-.downloads li + li { margin-top: 1rem; }
+/* Wide enough that each variant reads as its own block. Must stay larger
+   than the gap between a button and its own meta line, or the small print
+   attaches itself to the next language down. */
+.downloads li + li { margin-top: 1.75rem; }
 
 .button {
   display: inline-block;
@@ -161,19 +164,27 @@ a { color: inherit; }
   font-size: 1.125rem;
   text-decoration: none;
   box-shadow: 5px 5px 0 var(--btn-shadow, var(--ink));
-  transform: rotate(-1.5deg);
+  /* Tilt is a variable so the press states below inherit whatever angle the
+     button is set to, rather than each hard-coding the default. */
+  --tilt: -1.5deg;
+  transform: rotate(var(--tilt));
 }
 
 /* Hovering presses the button part-way into the page; activating it presses
    all the way, until the offset shadow is gone. */
-.button:hover { transform: rotate(-1.5deg) translate(2px, 2px); box-shadow: 3px 3px 0 var(--btn-shadow, var(--ink)); }
-.button:active { transform: rotate(-1.5deg) translate(5px, 5px); box-shadow: 0 0 0 var(--btn-shadow, var(--ink)); }
+.button:hover { transform: rotate(var(--tilt)) translate(2px, 2px); box-shadow: 3px 3px 0 var(--btn-shadow, var(--ink)); }
+.button:active { transform: rotate(var(--tilt)) translate(5px, 5px); box-shadow: 0 0 0 var(--btn-shadow, var(--ink)); }
+
+/* Stacked variants lean opposite ways, like the sticker cards do — two
+   identical buttons in a column read as a repeated element rather than as
+   two things to choose between. */
+.downloads li:nth-child(even) .button { --tilt: 1.4deg; }
 
 .downloads__meta {
   display: block;
-  /* Everything under the button is one block of small print: it opens with a
-     clear gap from the button, then the three lines sit evenly together. */
-  margin-top: 2.5rem;
+  /* Bound tightly to the button above it: this line describes that one file,
+     and there is now more than one to tell apart. */
+  margin-top: 0.75rem;
   color: var(--paper);
   font-size: 1rem;
 }
@@ -254,8 +265,9 @@ a { color: inherit; }
 
 .look__aside { display: flex; flex-direction: column; gap: 0.5rem; }
 
-/* The disclaimers sit well clear of the download button. */
-.look__hint { margin: 0; }
+/* The disclaimers sit well clear of the downloads — they describe the sheets
+   in general, not any one variant. */
+.look__hint { margin: 2.25rem 0 0; }
 .look__privacy { margin: 0; }
 .look__hint,
 .look__privacy { font-size: 1rem; color: var(--paper); }
